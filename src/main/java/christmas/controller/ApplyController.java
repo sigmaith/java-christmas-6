@@ -1,6 +1,7 @@
 package christmas.controller;
 
 import christmas.domain.Date;
+import christmas.domain.constants.Orders;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 import java.util.function.Supplier;
@@ -15,10 +16,15 @@ public class ApplyController {
 
     public void run() {
         Date date = retry(this::getDateToVisit); // 방문할 날짜
+        Orders orders = retry(this::getOrders); // 주문
     }
 
     public Date getDateToVisit() {
         return inputView.getDateToVisit();
+    }
+
+    public Orders getOrders() {
+        return inputView.getOrders();
     }
 
     private static <T> T retry(Supplier<T> supplier) {

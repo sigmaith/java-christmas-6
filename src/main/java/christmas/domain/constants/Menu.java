@@ -1,5 +1,7 @@
 package christmas.domain.constants;
 
+import java.util.Arrays;
+
 public enum Menu {
     MUSHROOM_SOUP("appetizer", "양송이 스프", 6_000),
     TAPAS("appetizer", "타파스", 5_500),
@@ -20,5 +22,9 @@ public enum Menu {
         this.type = type;
         this.name = name;
         this.price = price;
+    }
+
+    public static boolean has(String name) {
+        return Arrays.stream(values()).anyMatch(menu -> menu.name.equals(name));
     }
 }
