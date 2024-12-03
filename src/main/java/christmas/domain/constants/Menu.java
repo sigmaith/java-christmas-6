@@ -16,7 +16,7 @@ public enum Menu {
     ICE_CREAM("dessert", "아이스크림", 5_000),
     ZERO_COLA("beverage", "제로콜라", 3_000),
     RED_WINE("beverage", "레드와인", 60_000),
-    CHAMPAGNE("beverage", "레드와인", 25_000);
+    CHAMPAGNE("beverage", "샴페인", 25_000);
     private final String type;
     private final String name;
     private final Integer price;

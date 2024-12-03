@@ -11,4 +11,12 @@ public class OutputView {
         System.out.println("<할인 전 총주문 금액>");
         System.out.println(orders.getWholePrices() + "원");
     }
+
+    public void printChampagnePromotion(final boolean champagne) {
+        if (champagne) {
+            System.out.println("샴페인 1개");
+            return;
+        }
+        System.out.println("없음");
+    }
 }
