@@ -22,7 +22,7 @@ public class ApplyController {
         // 할인 적용
         PromotionHistory promotionHistory = new PromotionHistory(date, orders);
         printGiftPromotions(promotionHistory);
-
+        applyAllPromotions(promotionHistory);
     }
 
     private Date getDateToVisit() {
@@ -39,6 +39,7 @@ public class ApplyController {
 
     private void applyAllPromotions(final PromotionHistory promotionHistory) {
         promotionHistory.getWeekdayOrWeekendPromotion();
+        promotionHistory.getChristmasDDayPromotion();
     }
 
     private static <T> T retry(Supplier<T> supplier) {

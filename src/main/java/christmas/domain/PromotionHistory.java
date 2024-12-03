@@ -39,4 +39,11 @@ public class PromotionHistory {
         discountedPrice += orders.getDCPriceOfDessertMenu(); // 평일 -> 디저트 메뉴 할인
     }
 
+    public void getChristmasDDayPromotion() {
+        if (date.getDate() > 25) {
+            return;
+        }
+        christmasDDayPromotion = true;
+        discountedPrice += 1_000 + (date.getDate() - 1) * 100;
+    }
 }
