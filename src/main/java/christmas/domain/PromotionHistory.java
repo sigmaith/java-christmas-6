@@ -70,4 +70,12 @@ public class PromotionHistory {
         }
         return null;
     }
+
+    public int getDiscountedPrice() {
+        return discountedPrice;
+    }
+
+    public int getFinalPayment() {
+        return orders.getWholePrices() - discountedPrice;
+    }
 }

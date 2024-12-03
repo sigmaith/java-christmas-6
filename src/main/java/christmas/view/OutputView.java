@@ -1,6 +1,7 @@
 package christmas.view;
 
 import christmas.controller.dto.ApplicationInfo;
+import christmas.domain.PromotionHistory;
 import christmas.domain.constants.Menu;
 import christmas.domain.constants.Orders;
 import java.text.NumberFormat;
@@ -57,5 +58,13 @@ public class OutputView {
         if (dcPrice != 0) {
             System.out.printf("특별 할인: -%s원", NumberFormat.getInstance().format(dcPrice));
         }
+    }
+
+    public void printTotalBenefitAmountAndEstimatedPaymentAmount(PromotionHistory promotionHistory) {
+        System.out.println("<총혜택 금액>");
+        System.out.printf("-%s원", NumberFormat.getInstance().format(promotionHistory.getDiscountedPrice()));
+        System.out.println();
+        System.out.println("<할인 후 예상 결제 금액>");
+        System.out.printf("%s원", NumberFormat.getInstance().format(promotionHistory.getFinalPayment()));
     }
 }

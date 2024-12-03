@@ -23,6 +23,9 @@ public class ApplyController {
         PromotionHistory promotionHistory = new PromotionHistory(date, orders);
         printGiftPromotions(promotionHistory);
         applyAllPromotions(promotionHistory);
+        // 혜택 금액 및 할인 후 예상 결제금액 출력
+        outputView.printTotalBenefitAmountAndEstimatedPaymentAmount(promotionHistory);
+
     }
 
     private Date getDateToVisit() {
