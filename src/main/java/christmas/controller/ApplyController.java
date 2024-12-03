@@ -38,9 +38,11 @@ public class ApplyController {
     }
 
     private void applyAllPromotions(final PromotionHistory promotionHistory) {
-        promotionHistory.getWeekdayOrWeekendPromotion();
-        promotionHistory.getChristmasDDayPromotion();
-        promotionHistory.getStarDayPromotion();
+        outputView.printPromotionHistoryPrefix();
+        outputView.printGiftPromotion(promotionHistory.getGiftPromotion());
+        outputView.printWeekDayOrWeekendPromotion(promotionHistory.getWeekdayOrWeekendPromotion()); // 평일/주말 프로모션
+        outputView.printChristmasDDayPromotinon(promotionHistory.getChristmasDDayPromotion()); // 크리스마스 디데이 프로모션
+        promotionHistory.getStarDayPromotion(); // 별표 날 프로모션
     }
 
     private static <T> T retry(Supplier<T> supplier) {

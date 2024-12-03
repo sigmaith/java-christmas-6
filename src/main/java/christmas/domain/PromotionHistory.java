@@ -1,5 +1,6 @@
 package christmas.domain;
 
+import christmas.controller.dto.ApplicationInfo;
 import christmas.domain.constants.CustomDayOfWeek;
 import christmas.domain.constants.Menu;
 import christmas.domain.constants.Orders;
@@ -29,24 +30,29 @@ public class PromotionHistory {
         return null;
     }
 
-    public void getWeekdayOrWeekendPromotion() {
+    public ApplicationInfo getWeekdayOrWeekendPromotion() {
         int criteria = CustomDayOfWeek.FRIDAY.ordinal();
         int today = criteria + (date.getDate() - 1);
         if (CustomDayOfWeek.from(today % 7).isHoliday()) {
             weekendPromotion = true;
-            discountedPrice += orders.getDCPriceOfMainMenu(); // 주말 -> 메인 메뉴 할인
-            return;
+            int dcPriceOfMainMenu = orders.getDCPriceOfMainMenu();
+            discountedPrice += dcPriceOfMainMenu;// 주말 -> 메인 메뉴 할인
+            return new ApplicationInfo(true, dcPriceOfMainMenu);
         }
         weekdayPromotion = true;
-        discountedPrice += orders.getDCPriceOfDessertMenu(); // 평일 -> 디저트 메뉴 할인
+        int dcPriceOfDessertMenu = orders.getDCPriceOfDessertMenu();
+        discountedPrice += dcPriceOfDessertMenu; // 평일 -> 디저트 메뉴 할인
+        return new ApplicationInfo(false, dcPriceOfDessertMenu);
     }
 
-    public void getChristmasDDayPromotion() {
+    public int getChristmasDDayPromotion() {
         if (date.getDate() > 25) {
-            return;
+            return 0;
         }
         christmasDDayPromotion = true;
-        discountedPrice += 1_000 + (date.getDate() - 1) * 100;
+        int dcPriceOfDDayPromotion = 1_000 + (date.getDate() - 1) * 100;
+        discountedPrice += dcPriceOfDDayPromotion;
+        return dcPriceOfDDayPromotion;
     }
 
     public void getStarDayPromotion() {
@@ -54,5 +60,12 @@ public class PromotionHistory {
             stardayPromotion = true;
             discountedPrice += 1_000;
         }
+    }
+
+    public Menu getGiftPromotion() {
+        if (giftPromotion) {
+            return Menu.CHAMPAGNE;
+        }
+        return null;
     }
 }
