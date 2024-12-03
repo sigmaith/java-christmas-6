@@ -1,6 +1,7 @@
 package christmas.controller;
 
 import christmas.domain.Date;
+import christmas.domain.PromotionHistory;
 import christmas.domain.constants.Orders;
 import christmas.view.InputView;
 import christmas.view.OutputView;
@@ -19,8 +20,8 @@ public class ApplyController {
         Orders orders = retry(this::getOrders); // 주문
         outputView.printOrdersAndOriginalPrice(orders); // 주문 메뉴, 할인 전 총 주문금액
         // 할인 적용
-        Integer originalPrice = orders.getWholePrices(), discountedPrice = 0;
-        getChampagneBy(originalPrice, discountedPrice); // 샴페인 얻기
+        PromotionHistory promotionHistory = new PromotionHistory(date, orders);
+        printGiftPromotions(promotionHistory);
 
     }
 
@@ -32,13 +33,12 @@ public class ApplyController {
         return inputView.getOrders();
     }
 
-    private void getChampagneBy(Integer originalPrice, Integer discountedPrice) {
-        boolean champagne = false;
-        if (originalPrice >= 120_000) {
-            discountedPrice += 25_000;
-            champagne = true;
-        }
-        outputView.printChampagnePromotion(champagne);
+    private void printGiftPromotions(final PromotionHistory promotionHistory) {
+        outputView.printChampagnePromotion(promotionHistory.getGiftByOriginalPrice());
+    }
+
+    private void applyAllPromotions(final PromotionHistory promotionHistory) {
+        promotionHistory.getWeekdayOrWeekendPromotion();
     }
 
     private static <T> T retry(Supplier<T> supplier) {

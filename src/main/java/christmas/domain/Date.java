@@ -19,5 +19,9 @@ public class Date {
             throw CustomException.from(ErrorMessage.INVALID_DATE);
         }
     }
+
+    public int getDate() {
+        return date;
+    }
 }
 

@@ -29,6 +29,18 @@ public class Orders {
         }
     }
 
+    public int getDCPriceOfMainMenu() {
+        List<Order> mainTypeOrders = orders.stream().filter(order -> Menu.getMenuBy(order.getName()).isMainType()).toList();
+        int dcPriceOfMainTypes = mainTypeOrders.stream().mapToInt(order -> order.getQuantity() * 2_023).sum();
+        return dcPriceOfMainTypes;
+    }
+
+    public int getDCPriceOfDessertMenu() {
+        List<Order> dessertTypeOrders = orders.stream().filter(order -> Menu.getMenuBy(order.getName()).isDessertType()).toList();
+        int dcPriceOfDessertTypes = dessertTypeOrders.stream().mapToInt(order -> order.getQuantity() * 2_023).sum();
+        return dcPriceOfDessertTypes;
+    }
+
     @Override
     public String toString() {
         return orders.stream().map(Order::toString).collect(Collectors.joining("\n"));

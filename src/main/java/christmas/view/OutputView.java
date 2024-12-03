@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.domain.constants.Menu;
 import christmas.domain.constants.Orders;
 
 public class OutputView {
@@ -12,9 +13,11 @@ public class OutputView {
         System.out.println(orders.getWholePrices() + "원");
     }
 
-    public void printChampagnePromotion(final boolean champagne) {
-        if (champagne) {
-            System.out.println("샴페인 1개");
+    public void printChampagnePromotion(final Menu champagne) {
+        if (champagne != null) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(champagne.getName()).append(" 1개");
+            System.out.println(sb);
             return;
         }
         System.out.println("없음");

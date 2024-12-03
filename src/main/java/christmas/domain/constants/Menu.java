@@ -31,8 +31,30 @@ public enum Menu {
     }
 
     public static int getPriceBy(final String name) {
-        Arrays.stream(values())
+        return Arrays.stream(values())
                 .filter(menu -> menu.name.equals(name)).map(menu -> menu.price).findFirst()
                 .orElseThrow(() -> CustomException.from(ErrorMessage.INVALID_ORDER));
+    }
+
+    public static Menu getMenuBy(final String name) {
+        return Arrays.stream(values())
+                .filter(menu -> menu.name.equals(name)).findFirst()
+                .orElseThrow(() -> CustomException.from(ErrorMessage.INVALID_ORDER));
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean isDessertType() {
+        return type.equals("dessert");
+    }
+
+    public boolean isMainType() {
+        return type.equals("main");
     }
 }

@@ -40,6 +40,14 @@ public class Order {
         }
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
     public int getPrice() {
         return Menu.getPriceBy(name) * quantity;
     }
