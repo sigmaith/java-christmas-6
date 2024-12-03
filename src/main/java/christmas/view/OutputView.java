@@ -49,4 +49,10 @@ public class OutputView {
             System.out.printf("크리스마스 디데이 할인: -%s원", NumberFormat.getInstance().format(dcPrice));
         }
     }
+
+    public void printStarDayPromotion(int dcPrice) {
+        if (dcPrice != 0) {
+            System.out.printf("특별 할인: -%s원", NumberFormat.getInstance().format(dcPrice));
+        }
+    }
 }

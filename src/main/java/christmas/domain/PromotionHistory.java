@@ -55,11 +55,13 @@ public class PromotionHistory {
         return dcPriceOfDDayPromotion;
     }
 
-    public void getStarDayPromotion() {
+    public int getStarDayPromotion() {
         if (StarDay.isStarday(date.getDate())) { // 스타데이
             stardayPromotion = true;
             discountedPrice += 1_000;
+            return 1_000;
         }
+        return 0;
     }
 
     public Menu getGiftPromotion() {
