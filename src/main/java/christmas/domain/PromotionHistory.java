@@ -3,6 +3,7 @@ package christmas.domain;
 import christmas.domain.constants.CustomDayOfWeek;
 import christmas.domain.constants.Menu;
 import christmas.domain.constants.Orders;
+import christmas.domain.constants.StarDay;
 
 public class PromotionHistory {
     private Date date;
@@ -11,6 +12,7 @@ public class PromotionHistory {
     private boolean christmasDDayPromotion = false;
     private boolean weekdayPromotion = false;
     private boolean weekendPromotion = false;
+    private boolean stardayPromotion = false;
     private boolean giftPromotion = false;
 
     public PromotionHistory(Date date, Orders orders) {
@@ -45,5 +47,12 @@ public class PromotionHistory {
         }
         christmasDDayPromotion = true;
         discountedPrice += 1_000 + (date.getDate() - 1) * 100;
+    }
+
+    public void getStarDayPromotion() {
+        if (StarDay.isStarday(date.getDate())) { // 스타데이
+            stardayPromotion = true;
+            discountedPrice += 1_000;
+        }
     }
 }

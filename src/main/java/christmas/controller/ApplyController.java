@@ -40,6 +40,7 @@ public class ApplyController {
     private void applyAllPromotions(final PromotionHistory promotionHistory) {
         promotionHistory.getWeekdayOrWeekendPromotion();
         promotionHistory.getChristmasDDayPromotion();
+        promotionHistory.getStarDayPromotion();
     }
 
     private static <T> T retry(Supplier<T> supplier) {
