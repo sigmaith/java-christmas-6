@@ -47,6 +47,7 @@ public class ApplyController {
         outputView.printWeekDayOrWeekendPromotion(promotionHistory.getWeekdayOrWeekendPromotion()); // 평일/주말 프로모션
         outputView.printChristmasDDayPromotinon(promotionHistory.getChristmasDDayPromotion()); // 크리스마스 디데이 프로모션
         outputView.printStarDayPromotion(promotionHistory.getStarDayPromotion()); // 별표 날 프로모션
+        outputView.printNothingPromotion(promotionHistory);
     }
 
     private static <T> T retry(Supplier<T> supplier) {

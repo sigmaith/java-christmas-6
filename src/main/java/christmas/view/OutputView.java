@@ -41,11 +41,13 @@ public class OutputView {
 
     public void printWeekDayOrWeekendPromotion(ApplicationInfo applicationInfo) {
         StringBuilder sb = new StringBuilder();
-        if (applicationInfo.isWeekend()) {
+        if (applicationInfo.isWeekend() && applicationInfo.dcPrice() > 0) {
             System.out.printf("주말 할인: -%s원\n", NumberFormat.getInstance().format(applicationInfo.dcPrice()));
             return;
         }
-        System.out.printf("평일 할인: -%s원\n", NumberFormat.getInstance().format(applicationInfo.dcPrice()));
+        if (applicationInfo.dcPrice() > 0) {
+            System.out.printf("평일 할인: -%s원\n", NumberFormat.getInstance().format(applicationInfo.dcPrice()));
+        }
     }
 
     public void printChristmasDDayPromotinon(int dcPrice) {
@@ -57,6 +59,12 @@ public class OutputView {
     public void printStarDayPromotion(int dcPrice) {
         if (dcPrice != 0) {
             System.out.printf("특별 할인: -%s원\n\n", NumberFormat.getInstance().format(dcPrice));
+        }
+    }
+
+    public void printNothingPromotion(PromotionHistory promotionHistory) {
+        if (promotionHistory.getDiscountedPrice() == 0) {
+            System.out.println("없음");
         }
     }
 

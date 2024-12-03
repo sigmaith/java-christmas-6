@@ -6,15 +6,17 @@ import christmas.exception.ErrorMessage;
 public class Date {
     private final int date;
     public Date(final String input) {
-        this(Integer.parseInt(input));
-    }
-
-    public Date(final int date) {
-        validate(date);
-        this.date = date;
+        try{
+            int date = Integer.parseInt(input);
+            validate(date);
+            this.date = date;
+        } catch (NumberFormatException e) {
+            throw CustomException.from(ErrorMessage.INVALID_DATE);
+        }
     }
 
     private void validate(int date) {
+
         if (date < 1 || date > 31) {
             throw CustomException.from(ErrorMessage.INVALID_DATE);
         }
