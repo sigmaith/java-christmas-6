@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import org.mockito.internal.matchers.Or;
 
 public class Orders {
@@ -17,10 +18,19 @@ public class Orders {
         this.orders = orders;
     }
 
+    public int getWholePrices() {
+        return orders.stream().mapToInt(Order::getPrice).sum();
+    }
+
     private void validateNoDuplicates(List<Order> orders) {
         Set<Order> orderSet = new HashSet<>(orders);
         if (orderSet.size() != orders.size()) {
             throw CustomException.from(ErrorMessage.INVALID_ORDER);
         }
+    }
+
+    @Override
+    public String toString() {
+        return orders.stream().map(Order::toString).collect(Collectors.joining("\n"));
     }
 }

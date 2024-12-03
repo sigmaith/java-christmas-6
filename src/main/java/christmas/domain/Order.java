@@ -40,6 +40,10 @@ public class Order {
         }
     }
 
+    public int getPrice() {
+        return Menu.getPriceBy(name) * quantity;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -53,5 +57,12 @@ public class Order {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(name).append(" ").append(quantity).append("개");
+        return sb.toString();
     }
 }

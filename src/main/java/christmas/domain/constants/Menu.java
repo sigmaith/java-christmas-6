@@ -1,5 +1,7 @@
 package christmas.domain.constants;
 
+import christmas.exception.CustomException;
+import christmas.exception.ErrorMessage;
 import java.util.Arrays;
 
 public enum Menu {
@@ -24,7 +26,13 @@ public enum Menu {
         this.price = price;
     }
 
-    public static boolean has(String name) {
+    public static boolean has(final String name) {
         return Arrays.stream(values()).anyMatch(menu -> menu.name.equals(name));
+    }
+
+    public static int getPriceBy(final String name) {
+        Arrays.stream(values())
+                .filter(menu -> menu.name.equals(name)).map(menu -> menu.price).findFirst()
+                .orElseThrow(() -> CustomException.from(ErrorMessage.INVALID_ORDER));
     }
 }
