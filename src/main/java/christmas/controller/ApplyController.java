@@ -2,6 +2,7 @@ package christmas.controller;
 
 import christmas.domain.Date;
 import christmas.domain.PromotionHistory;
+import christmas.domain.constants.Badge;
 import christmas.domain.constants.Orders;
 import christmas.view.InputView;
 import christmas.view.OutputView;
@@ -25,7 +26,7 @@ public class ApplyController {
         applyAllPromotions(promotionHistory);
         // 혜택 금액 및 할인 후 예상 결제금액 출력
         outputView.printTotalBenefitAmountAndEstimatedPaymentAmount(promotionHistory);
-
+        outputView.printBadge(Badge.getBadgeNameBy(promotionHistory.getDiscountedPrice()));
     }
 
     private Date getDateToVisit() {
