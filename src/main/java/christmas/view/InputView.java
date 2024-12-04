@@ -3,7 +3,7 @@ package christmas.view;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import christmas.domain.Date;
-import christmas.domain.constants.Orders;
+import christmas.domain.Orders;
 import christmas.exception.CustomException;
 import christmas.exception.ErrorMessage;
 

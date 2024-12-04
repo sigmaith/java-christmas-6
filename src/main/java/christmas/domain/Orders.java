@@ -1,6 +1,6 @@
-package christmas.domain.constants;
+package christmas.domain;
 
-import christmas.domain.Order;
+import christmas.domain.constants.Menu;
 import christmas.exception.CustomException;
 import christmas.exception.ErrorMessage;
 import java.util.Arrays;
@@ -8,7 +8,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import org.mockito.internal.matchers.Or;
 
 public class Orders {
     private List<Order> orders;

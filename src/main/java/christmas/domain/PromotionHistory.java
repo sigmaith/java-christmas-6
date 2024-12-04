@@ -3,7 +3,6 @@ package christmas.domain;
 import christmas.controller.dto.ApplicationInfo;
 import christmas.domain.constants.CustomDayOfWeek;
 import christmas.domain.constants.Menu;
-import christmas.domain.constants.Orders;
 import christmas.domain.constants.StarDay;
 
 public class PromotionHistory {

@@ -3,7 +3,7 @@ package christmas.controller;
 import christmas.domain.Date;
 import christmas.domain.PromotionHistory;
 import christmas.domain.constants.Badge;
-import christmas.domain.constants.Orders;
+import christmas.domain.Orders;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 import java.util.function.Supplier;

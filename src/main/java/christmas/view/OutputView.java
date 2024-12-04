@@ -3,7 +3,7 @@ package christmas.view;
 import christmas.controller.dto.ApplicationInfo;
 import christmas.domain.PromotionHistory;
 import christmas.domain.constants.Menu;
-import christmas.domain.constants.Orders;
+import christmas.domain.Orders;
 import java.text.NumberFormat;
 
 public class OutputView {
