@@ -8,12 +8,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import org.mockito.internal.matchers.Or;
 
 public class Orders {
     private List<Order> orders;
     public Orders(final String input) {
         List<Order> orders = Arrays.stream(input.split(",", -1)).map(Order::new).toList();
         validateNoDuplicates(orders);
+        validateMax(orders);
+        validateAllBeverage(orders);
         this.orders = orders;
     }
 
@@ -24,6 +27,19 @@ public class Orders {
     private void validateNoDuplicates(List<Order> orders) {
         Set<Order> orderSet = new HashSet<>(orders);
         if (orderSet.size() != orders.size()) {
+            throw CustomException.from(ErrorMessage.INVALID_ORDER);
+        }
+    }
+
+    private void validateMax(List<Order> orders) {
+        int sum = orders.stream().mapToInt(Order::getQuantity).sum();
+        if (sum > 20) {
+            throw CustomException.from(ErrorMessage.INVALID_ORDER);
+        }
+    }
+
+    private void validateAllBeverage(List<Order> orders) {
+        if (orders.stream().map(Order::getName).allMatch(Menu::isBeverageType)) {
             throw CustomException.from(ErrorMessage.INVALID_ORDER);
         }
     }

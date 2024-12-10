@@ -9,6 +9,7 @@ public class PromotionHistory {
     private Date date;
     private Orders orders;
     private int discountedPrice = 0;
+    private boolean canApplyEvent = true;
     private boolean christmasDDayPromotion = false;
     private boolean weekdayPromotion = false;
     private boolean weekendPromotion = false;
@@ -18,6 +19,9 @@ public class PromotionHistory {
     public PromotionHistory(Date date, Orders orders) {
         this.date = date;
         this.orders = orders;
+        if (orders.getWholePrices() < 10_000) {
+            canApplyEvent = false;
+        }
     }
 
     public Menu getGiftByOriginalPrice() {
