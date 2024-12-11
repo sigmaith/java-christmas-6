@@ -36,20 +36,23 @@ public class PromotionHistory {
     public ApplicationInfo getWeekdayOrWeekendPromotion() {
         int criteria = CustomDayOfWeek.FRIDAY.ordinal();
         int today = criteria + (date.getDate() - 1);
-        if (CustomDayOfWeek.from(today % 7).isHoliday()) {
+        if (orders.getWholePrices() >= 10_000 && CustomDayOfWeek.from(today % 7).isHoliday()) {
             weekendPromotion = true;
             int dcPriceOfMainMenu = orders.getDCPriceOfMainMenu();
             discountedPrice += dcPriceOfMainMenu;// 주말 -> 메인 메뉴 할인
             return new ApplicationInfo(true, dcPriceOfMainMenu);
         }
-        weekdayPromotion = true;
-        int dcPriceOfDessertMenu = orders.getDCPriceOfDessertMenu();
-        discountedPrice += dcPriceOfDessertMenu; // 평일 -> 디저트 메뉴 할인
-        return new ApplicationInfo(false, dcPriceOfDessertMenu);
+        if (orders.getWholePrices() >= 10_000) {
+            weekdayPromotion = true;
+            int dcPriceOfDessertMenu = orders.getDCPriceOfDessertMenu();
+            discountedPrice += dcPriceOfDessertMenu; // 평일 -> 디저트 메뉴 할인
+            return new ApplicationInfo(false, dcPriceOfDessertMenu);
+        }
+        return new ApplicationInfo(CustomDayOfWeek.from(today % 7).isHoliday(), 0);
     }
 
     public int getChristmasDDayPromotion() {
-        if (date.getDate() > 25) {
+        if (date.getDate() > 25 || orders.getWholePrices() < 10_000) {
             return 0;
         }
         christmasDDayPromotion = true;
@@ -59,7 +62,7 @@ public class PromotionHistory {
     }
 
     public int getStarDayPromotion() {
-        if (StarDay.isStarday(date.getDate())) { // 스타데이
+        if (orders.getWholePrices() >= 10_000 && StarDay.isStarday(date.getDate())) { // 스타데이
             stardayPromotion = true;
             discountedPrice += 1_000;
             return 1_000;
